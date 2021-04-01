@@ -13,8 +13,12 @@ server.on('request', (request, response) => {
 
   //Om den efterfrågade url:en är /(i detta fall localhost:8000) skicka tillbaka en index.html
   if (request.url === '/') {
-    const file = fs.createReadStream('index.html');
+    const file = fs.createReadStream('frontend/index.html');
     file.pipe(response);
+  } else if (request.url === '/api/insults') {
+    console.log('Inne här');
+    const insults = fs.createReadStream('insults.json');
+    insults.pipe(response);
   } else if (request.url === '/api/name') {
     /*
     Eftersom får server enbart agerar på url:er så kan vi egentligen
@@ -23,16 +27,18 @@ server.on('request', (request, response) => {
     const obj = {
       name: 'Christoffer'
     }
-
     /*
     Här behöver vi köra JSON.stringify då vi enbart kan skicka tillbaka
     bytes eller strängar till en klient
     */
     response.end(JSON.stringify(obj));
+  } else if (request.url === '/about') {
+    const file = fs.createReadStream('frontend/about.html');
+    file.pipe(response);
   } else {
     //Plocka ut enbart filnamn utan / innan så /style.css blir style.css
     const fileName = path.basename(request.url);
-    const file = fs.createReadStream(fileName);
+    const file = fs.createReadStream(`frontend/${fileName}`);
 
     //Om filen hittades och kan öppnas så triggas eventet open
     file.on('open', () => {
