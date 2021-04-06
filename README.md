@@ -19,4 +19,4 @@ Introduktion till Node.js: https://www.youtube.com/watch?v=TlB_eWDSMt4 (denna vi
 
 ## Inspelningar
 
-https://github.com/FWK20G-Frontendutveckling-server/lektion-1-april
+https://drive.google.com/drive/folders/1phkpMYq192vHwqqs8NLUR1meehmueiFS?usp=sharing
